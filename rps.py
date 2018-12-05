@@ -1,7 +1,6 @@
 import sys
 import random
 
-
 MOVES = {
     'ROCK': 'ROCK',
     'PAPER': 'PAPER',
@@ -14,7 +13,7 @@ WEAKNESS = {
     MOVES['SCISSORS']: MOVES['ROCK']
 }
 
-
+# Keep track of # of times the player uses each move
 def count_moves(user_moves):
     counts = [
         {'name': MOVES['ROCK'], 'played': 0},
@@ -71,6 +70,8 @@ class Game:
         else:
             self.user_move_history.append(self.user_move)
 
+    # Do some simple strategizing by analyzing previous moves
+    # and determine how to counteract the most likely possibility
     def get_computer_move(self):
         if len(self.user_move_history) > 2:
             most_played_move = count_moves(self.user_move_history)[-1]['name']
